@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="./assets/styles/main.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="game-setup">
+      <div class="logo">
+        <img src="./assets/images/Frame 13.svg" alt="logo" />
+      </div>
+     
+        <button id="startGame">Start Game</button>
+      </div>
+    </div>
+    <div class="playground-container">
+      <div class="row" style="gap:50px;">
+        <div id="chessboard">
+          <div class="hd-txt">Your board</div>
+          <div id="chessboard-cell"></div>
+          <div class="shipyard-container"></div>
+        </div>
+        <div id="opponent-board">
+          <div class="hd-txt">Opponent's board</div>
+          <div id="opponent-board-cell"></div>
+        </div>
+      </div>
+      <div class="legenda">
+        <div class="legenda-item">
+          <div class="legenda-sym" style="background-color: grey;"></div>
+          <div class="legenda-txt">Occupied</div>
+        </div>
+        <div class="legenda-item">
+          <div class="legenda-sym" style="background-color: red;"></div>
+          <div class="legenda-txt">Hit</div>
+        </div>
+        <div class="legenda-item">
+          <div class="legenda-sym" style="background-color: lightskyblue;"></div>
+          <div class="legenda-txt">Miss</div>
+        </div>
+      </div>
+      <div class="row">
+        <button id="autoplaceBtn">auto place</button>
+      </div>
+      <div id="infodisplay"></div>
+      <div id="turndisplay"></div>
+      <div class="ships-display"></div>
+    </div>
+
+    <script type="module" src="./src/modules/GameLogic.js"></script>
+  </body>
+</html>

@@ -1,0 +1,159 @@
+@font-face {
+	font-family: "Futura Std";
+	src: url("../fonts/FuturaStdHeavy.otf");
+  }
+
+  @font-face {
+	font-family: "Futura Std bold";
+	src: url("../fonts/FuturaStdBold.otf");
+  }
+
+  #infodisplay,
+  #turndisplay{
+	font-size: 24px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+	font-family: "Futura Std";
+  }
+#chessboard-cell,
+#opponent-board-cell {
+  display: grid;
+  grid-template-columns: repeat(10, 50px);
+  grid-template-rows: repeat(10, 50px);
+  gap: 1px;
+  width: 50%;
+}
+#opponent-board-cell .cell.occupied{
+	background: rgba(97, 198, 255, 0.2);
+
+}
+#opponent-board-cell .cell.occupied.boom{
+	background: red;
+
+}
+#opponent-board-cell .cell.occupied.miss{
+	background: lightskyblue;
+
+}
+#chessboard .hd-txt {
+	background-color: #ff0055;
+  }
+
+  #opponent-board .hd-txt {
+	background-color: #717c96;
+  }
+  
+  .hd-txt {
+	padding-right: 0px;
+	justify-content: center;
+	align-items: center;
+	border-radius: 4px;
+	margin-bottom: 10px;
+	color: white;
+	padding: 10px;
+
+	/* text */
+	color: #fff;
+	text-align: center;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+	letter-spacing: 1.8px;
+	text-transform: uppercase;
+	font-family: "Futura Std bold";
+  }
+
+.cell {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	border-radius: 4px;
+	border: 2px solid #fff;
+	background: rgba(97, 198, 255, 0.2);
+  }
+  .ships-display{
+	display: flex;
+  }
+  #opponent-board .cell {
+	cursor: pointer;
+  }
+  .ship{
+	display: flex;
+    flex-wrap: wrap;
+    margin: 1vmin;
+  
+    height: calc(4.6vmin * 1);
+	background-color:#474758;
+	border-radius: 2.3vmin;
+    border-bottom-right-radius: 1vmin;
+    border-top-right-radius: 1vmin;
+  }
+  .ship>div{
+	width: 4.6vmin;
+    height: 4.6vmin;
+  }
+  .playground-container {
+	display: none;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+	height: 100vh;
+	width: 100%;
+	margin: 0 auto;
+
+  }
+
+  #game-setup {
+	width: 100vw;
+	height: 100vh;
+	background-image: url("../images/Cover\ Img\ Template\ \(1\).svg");
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 15px;
+  }
+
+  .row{
+	display: flex;
+  }
+
+  .legenda , 
+  .legenda-item{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	gap: 20px;
+  }
+
+  .legenda-sym{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	border-radius: 4px;
+	border: 2px solid #fff;
+	height: 25px;
+	width: 25px;
+  }
+  .legenda-txt{
+	font-weight: 500;
+	line-height: normal;
+	letter-spacing: 1.8px;
+	font-family: "Futura Std";
+  }
+  .occupied{
+	background-color: grey;
+  }
+
+  .miss{
+	background-color: lightskyblue;
+  }
+
+  .boom{
+	background-color: red
+  }
