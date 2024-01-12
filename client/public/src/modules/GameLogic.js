@@ -1,6 +1,6 @@
 import boats from "./Ships.js";
 import { gameboard } from "./Gameboard.js";
-import { shipCounts, CPUshipCounts } from "./ScoreBoard.js";
+import { shipCounts } from "./ScoreBoard.js";
 
 const startGameBtn = document.getElementById("startGame");
 const autoPlaceShipsBtn = document.getElementById("autoplaceBtn");
@@ -133,12 +133,7 @@ $(document).ready(function () {
         square.addEventListener("click", function (e) {
           shotFired = square.dataset.id;
           revealSquare(square.classList);
-          // console.log(square.classList);
-          // console.log(shipCounts.destroyer.getCount());
-          // console.log(shipCounts.submarine.getCount());
-          // console.log(shipCounts.cruiser.getCount());
-          // console.log(shipCounts.battleship.getCount());
-          // console.log(shipCounts.carrier.getCount());
+          console.log(square.classList);
         })
       );
     }
@@ -178,21 +173,50 @@ $(document).ready(function () {
     if (gameMode === "singlePlayer") playGameSingle();
   }
 
+  // let computerState = {
+  //   lastHit: -1,
+  //   lastDirection: 1,
+  //   isTargeting: false
+  // };
+
   function enemyGo(square) {
     if (gameMode === "singlePlayer")
-      square = Math.floor(Math.random() * userSquares.length);
+      // if (computerState.isTargeting) {
+      //   // If computer is targeting a ship, continue shooting in the last direction
+      //   square = computerState.lastHit + computerState.lastDirection;
+      // } else {
+        // Otherwise, choose a random cell to shoot
+        square = Math.floor(Math.random() * userSquares.length);
+      // }
+    // Case sensitive
     if (!userSquares[square].classList.contains("boom")) {
-      if (userSquares[square].classList.contains("destroyer"))
-        CPUshipCounts.CPUdestroyer.increaseCount();
-      if (userSquares[square].classList.contains("submarine"))
-        CPUshipCounts.CPUsubmarine.increaseCount();
-      if (userSquares[square].classList.contains("cruiser"))
-        CPUshipCounts.CPUcruiser.increaseCount();
-      if (userSquares[square].classList.contains("battleship"))
-        CPUshipCounts.CPUbattleship.increaseCount();
-      if (userSquares[square].classList.contains("carrier"))
-        CPUshipCounts.CPUcarrier.increaseCount();
+      if (userSquares[square].classList.contains("Destroyer"))
+        shipCounts.CPUdestroyer.increaseCount();
+      if (userSquares[square].classList.contains("Submarine"))
+        shipCounts.CPUsubmarine.increaseCount();
+      if (userSquares[square].classList.contains("Cruiser"))
+        shipCounts.CPUcruiser.increaseCount();
+      if (userSquares[square].classList.contains("Battleship"))
+        shipCounts.CPUbattleship.increaseCount();
+      if (userSquares[square].classList.contains("Carrier"))
+        shipCounts.CPUcarrier.increaseCount();
+
+      // If a ship is hit, update the computer state
+      // if (!userSquares[square].classList.contains("miss")) {
+      //   computerState.isTargeting = true;
+      //   computerState.lastHit = square;
+      // } else {
+      //   // If a miss, change direction
+      //   computerState.isTargeting = false;
+      //   computerState.lastDirection =
+      //     computerState.lastDirection === 1 ? -1 : 1;
+      // }
       checkForWins();
+      console.log(shipCounts.CPUdestroyer.getCount());
+      console.log(shipCounts.CPUsubmarine.getCount());
+      console.log(shipCounts.CPUcruiser.getCount());
+      console.log(shipCounts.CPUbattleship.getCount());
+      console.log(shipCounts.CPUcarrier.getCount());
     }
     if (
       userSquares[square].classList.contains("boom") ||
@@ -247,25 +271,25 @@ $(document).ready(function () {
       infoDisplay.innerHTML = `You sunk the ${enemy}'s carrier`;
       shipCounts.carrier.setCount(10);
     }
-    if (CPUshipCounts.CPUdestroyer.getCount() === 2) {
+    if (shipCounts.CPUdestroyer.getCount() === 2) {
       infoDisplay.innerHTML = `${enemy} sunk your destroyer`;
-      CPUshipCounts.CPUdestroyer.setCount(10);
+      shipCounts.CPUdestroyer.setCount(10);
     }
-    if (CPUshipCounts.CPUsubmarine.getCount() === 3) {
+    if (shipCounts.CPUsubmarine.getCount() === 3) {
       infoDisplay.innerHTML = `${enemy} sunk your submarine`;
-      CPUshipCounts.CPUsubmarine.setCount(10);
+      shipCounts.CPUsubmarine.setCount(10);
     }
-    if (CPUshipCounts.CPUcruiser.getCount() === 3) {
+    if (shipCounts.CPUcruiser.getCount() === 3) {
       infoDisplay.innerHTML = `${enemy} sunk your cruiser`;
-      CPUshipCounts.CPUcruiser.setCount(10);
+      shipCounts.CPUcruiser.setCount(10);
     }
-    if (CPUshipCounts.CPUbattleship.getCount() === 4) {
+    if (shipCounts.CPUbattleship.getCount() === 4) {
       infoDisplay.innerHTML = `${enemy} sunk your battleship`;
-      CPUshipCounts.CPUbattleship.setCount(10);
+      shipCounts.CPUbattleship.setCount(10);
     }
-    if (CPUshipCounts.CPUcarrier.getCount() === 5) {
+    if (shipCounts.CPUcarrier.getCount() === 5) {
       infoDisplay.innerHTML = `${enemy} sunk your carrier`;
-      CPUshipCounts.CPUcarrier.setCount(10);
+      shipCounts.CPUcarrier.setCount(10);
     }
 
     if (
@@ -282,11 +306,11 @@ $(document).ready(function () {
       gameOver();
     }
     if (
-      CPUshipCounts.CPUdestroyer.getCount() +
-        CPUshipCounts.CPUsubmarine.getCount() +
-        CPUshipCounts.CPUcruiser.getCount() +
-        CPUshipCounts.CPUbattleship.getCount() +
-        CPUshipCounts.CPUcarrier.getCount() ===
+      shipCounts.CPUdestroyer.getCount() +
+        shipCounts.CPUsubmarine.getCount() +
+        shipCounts.CPUcruiser.getCount() +
+        shipCounts.CPUbattleship.getCount() +
+        shipCounts.CPUcarrier.getCount() ===
       50
     ) {
       turnDisplay.remove();
