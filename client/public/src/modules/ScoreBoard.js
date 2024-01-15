@@ -22,15 +22,11 @@ export const shipCounts = {
   battleship: new ShipCounts(),
   cruiser: new ShipCounts(),
   submarine: new ShipCounts(),
-  destroyer: new ShipCounts()
-};
-
-export const CPUshipCounts = {
+  destroyer: new ShipCounts(),
+  // CPU
   CPUcarrier: new ShipCounts(),
   CPUbattleship: new ShipCounts(),
   CPUcruiser: new ShipCounts(),
   CPUsubmarine: new ShipCounts(),
   CPUdestroyer: new ShipCounts()
 };
-
-console.log("Carrier Count:", shipCounts.battleship.getCount());
